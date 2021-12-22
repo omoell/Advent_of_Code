@@ -31,5 +31,31 @@ print(len(puzzle_input.list))
 print(len(results))
 print(sum(results)) # the correct result was 1451 - instead of 1450 (I do not understand the reason)
 
-# Hilariously short solution from reddit thread
+# !!!!!!!!!!!!!! SPOILER !!!!!!!!!!!!!!
+# Hilariously short solution from reddit thread - SCROLL DOWN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print(sum(x < y for x,y in zip(puzzle_input.list, puzzle_input.list[1:])))
