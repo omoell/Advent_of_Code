@@ -7,55 +7,18 @@ class Puzzle_Input:
         with open(self.filename, 'r') as f:
             content_raw = f.readlines()
             # Clean printed newline
-        return [line.replace('\n','') for line in content_raw]
+        return [int(line.replace('\n','')) for line in content_raw]
 
-class Comparer:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def drop_speed(self, rolling=1):
+        if rolling > 0:
+            data = puzzle_input.list if rolling == 1 else [sum(x) for x in zip(puzzle_input.list, puzzle_input.list[1:], puzzle_input.list[2:])]
+        else: sys.exit(f'"rolling" must be a positive value.')
 
-    def a_lgt_b(self):
-        return self.a > self.b
+        return sum(y > x for x, y in zip(data, data[1:])) # this one line solution was copied from reddit thread - author not known anymore
+
 
 # Puzzle 1a
 txt_file = 'input_1a.txt'
 puzzle_input = Puzzle_Input(txt_file)
-results = []
-for i in range(1, len(puzzle_input.list)):
-    previous = puzzle_input.list[i-1]
-    current = puzzle_input.list[i]
-    result = Comparer(current, previous).a_lgt_b()
-    results.append(result)
-    #print(f'{current}  {previous}  {result}')
-print(len(puzzle_input.list))
-print(len(results))
-print(sum(results)) # the correct result was 1451 - instead of 1450 (I do not understand the reason)
-
-# !!!!!!!!!!!!!! SPOILER !!!!!!!!!!!!!!
-# Hilariously short solution from reddit thread - SCROLL DOWN
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print(sum(x < y for x,y in zip(puzzle_input.list, puzzle_input.list[1:])))
+print(f'Solution for 1a: {puzzle_input.drop_speed()}') # the correct result was 1451 - instead of 1450 (I do not understand the reason)
+print(f'Solution for 1b: {puzzle_input.drop_speed(3)}')
